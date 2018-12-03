@@ -16,7 +16,7 @@ public class Receiver {
         this.latch = latch;
     }
 
-    public void receive(String message) {
+    public void receiveMessage(String message) {
         log.info("Received < {} >", message);
         latch.countDown();
     }
