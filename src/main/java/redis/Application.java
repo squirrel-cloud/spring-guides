@@ -53,21 +53,25 @@ public class Application {
         return new StringRedisTemplate(connectionFactory);
     }
 
-//    @Bean
-//    RedisTemplate redisTemplate(RedisConnectionFactory connectionFactory) {
-//        RedisTemplate template = new RedisTemplate();
-//        template.setConnectionFactory(connectionFactory);
-//
-//        return template;
-//    }
+    @Bean
+    RedisTemplate redisTemplate(RedisConnectionFactory connectionFactory) {
+        RedisTemplate template = new RedisTemplate();
+        template.setConnectionFactory(connectionFactory);
+
+        return template;
+    }
 
     @Bean
     HashOperations<Object, byte[], byte[]> hashOperations(RedisConnectionFactory connectionFactory) {
-        RedisTemplate redisTemplate = new RedisTemplate();
-        redisTemplate.setConnectionFactory(connectionFactory);
-        HashOperations<Object, byte[], byte[]> hashOperations = redisTemplate.opsForHash();
+        HashOperations<Object, byte[], byte[]> hashOperations = redisTemplate(connectionFactory).opsForHash();
 
         return hashOperations;
+    }
+
+    @Bean
+    HashMapping hashMapping() {
+        HashMapping mapping = new HashMapping();
+        return mapping;
     }
 
     public static void main(String[] args) throws InterruptedException {
@@ -89,7 +93,7 @@ public class Application {
         p.setFirstName("cloud");
         p.setLastName("chen");
 
-        HashMapping mapping = new HashMapping();
-        mapping.writeHash("1000", p);
+        HashMapping mapping = ctx.getBean(HashMapping.class);
+        mapping.writeHash("1001", p);
     }
 }
