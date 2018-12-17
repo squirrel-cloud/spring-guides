@@ -22,13 +22,4 @@ public class HashMapping {
         Map<byte[], byte[]> loadedHash = hashOperations.entries(key);
         return (Person) mapper.fromHash(loadedHash);
     }
-
-    public static void main(String [] args) {
-        Person p = new Person();
-        p.setFirstName("cloud");
-        p.setLastName("chen");
-
-        HashMapping mapping = new HashMapping();
-        mapping.writeHash("1000", p);
-    }
 }
