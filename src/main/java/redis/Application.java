@@ -19,7 +19,7 @@ import redis.hash.Person;
 
 import java.util.concurrent.CountDownLatch;
 
-@SpringBootApplication
+//@SpringBootApplication
 public class Application {
     private static final Logger log = LoggerFactory.getLogger(Application.class);
 
