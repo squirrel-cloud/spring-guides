@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.mapper.MapperFactoryBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +17,7 @@ import org.squirrel.world.db.mapper.CountryMapper;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan("mapper")
+@MapperScan("org.squirrel.world.db.mapper")
 public class MybatisConfig {
 
     @Bean
@@ -30,14 +31,14 @@ public class MybatisConfig {
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(dataSource());
-        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        factoryBean.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));
+//        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+//        factoryBean.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));
         return factoryBean.getObject();
     }
 
-    @Bean
-    public CountryMapper countryMapper() throws Exception {
-        SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate(sqlSessionFactory());
-        return sqlSessionTemplate.getMapper(CountryMapper.class);
-    }
+//    @Bean
+//    public CountryMapper countryMapper() throws Exception {
+//        SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate(sqlSessionFactory());
+//        return sqlSessionTemplate.getMapper(CountryMapper.class);
+//    }
 }

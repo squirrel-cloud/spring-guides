@@ -1,10 +1,11 @@
 package org.squirrel.world.db.mapper;
 
-import org.apache.ibatis.annotations.Select;
-
 import java.util.List;
 
 public interface CountryMapper {
-    @Select("SELECT * FROM country")
-    List<Object> listCountries();
+//    @Select("SELECT * FROM country")
+    List<String> listCountries();
+
+//    @Select("SELECT count(*) FROM country")
+    int getCountryCount();
 }
