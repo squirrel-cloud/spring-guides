@@ -16,13 +16,17 @@ public enum Continent {
     }
 
     public static Continent fromValue(String value) {
+        if (value == null) {
+            return null;
+        }
+
         switch (value) {
             case "North America":
                 return NORTH_AMERICA;
             case "South America":
                 return SOUTH_AMERICA;
             default:
-                return Continent.valueOf(value);
+                return Continent.valueOf(value.toUpperCase());
         }
     }
 }
