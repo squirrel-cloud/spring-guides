@@ -3,8 +3,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.squirrel.world.db.mapper.CountryMapper">
-  <select id="listCountries" resultType="java.lang.String">
-    SELECT code FROM country
+  <resultMap type="org.squirrel.world.db.model.Country" id="country">
+    <id column="code" property="code"/>
+    <result column="name" property="name"/>
+    <result column="continent" property="continent"/>
+    <result column="region" property="region"/>
+    <result column="surfaceArea" property="surfaceArea"/>
+    <result column="population" property="population"/>
+  </resultMap>
+
+  <select id="listCountries" resultMap="country">
+    SELECT * FROM country
   </select>
 
   <select id="getCountryCount" resultType="int">
